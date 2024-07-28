@@ -3,6 +3,15 @@
   src: url('../public//fonts/als-gorizont-variable.ttf');
 }
 
+:root {
+  --background-timer-color: #1a1f23;
+  --background-btn-pause-resume-color: #f9891c;
+  --background-btn-cancel-color: #757677;
+  --text-timer-color: #ffffff;
+  --font-main: 'ALS-Gorizont', sans-serif;
+  --font-edit-color: #29a354;
+}
+
 * {
   margin: 0;
   padding: 0;

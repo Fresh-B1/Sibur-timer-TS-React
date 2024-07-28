@@ -52,19 +52,28 @@ const Timer = ({ id, edit }: { edit: boolean; id: number }) => {
   return (
     <div className='timer'>
       <div>
-        <Link to={`/timer/${timer.id}`}>
+        {edit && (
+          <button className='timer_delete' onClick={onHandleDelete}>
+            <img src='../../../../public/img/Group_delete.svg' alt='delete' />
+          </button>
+        )}
+      </div>
+      <div className='timer_display'>
+        <Link className='timer_display_link' to={`/timer/${timer.id}`}>
           {`${timer.minutes}:${timer.seconds.toString().padStart(2, '0')}`}
         </Link>
-        <div>{`${timer.startMinutes > 0 ? `${timer.startMinutes} мин` : ''} ${
-          timer.startSeconds > 0 ? `${timer.startSeconds} сек` : ''
-        }`}</div>
+        <div className='timer_repeat_time'>{`${
+          timer.startMinutes > 0 ? `${timer.startMinutes} мин` : ''
+        } ${timer.startSeconds > 0 ? `${timer.startSeconds} сек` : ''}`}</div>
       </div>
 
-      <button onClick={onHandleStartPause}>
-        {timer.status === 'start' ? 'Пауза' : 'Старт'}
+      <button className='timer_play_pause' onClick={onHandleStartPause}>
+        {timer.status === 'start' ? (
+          <img src='../../../../public/img/Group_pause.svg' alt='Pause' />
+        ) : (
+          <img src='../../../../public/img/Group_play.svg' alt='Start' />
+        )}
       </button>
-
-      <div>{edit && <button onClick={onHandleDelete}>Удалить</button>}</div>
     </div>
   );
 };

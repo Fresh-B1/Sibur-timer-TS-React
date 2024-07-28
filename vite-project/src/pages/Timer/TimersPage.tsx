@@ -17,14 +17,21 @@ function TimersPage(): JSX.Element {
   return (
     <div className='container'>
       <div className='container_timers'>
-        <div className='timers_title'>Таймеры</div>
-        <div>
-          <TimersList edit={edit} />
+        <div className='container_timers_head'>
+          <button className='btn_timer_edit' onClick={onHandleSubmit}>
+            {edit ? 'Готово' : 'Править'}
+          </button>
+
+          <Link to='/add'>
+            <button className='timer_plus'>
+              <img src='../../../public/img/plus.svg' alt='+' />
+            </button>
+          </Link>
         </div>
-        <Link to='/add'>
-          <button>+</button>
-        </Link>
-        <button onClick={onHandleSubmit}>Править</button>
+        <div className='timers_title'>Таймеры</div>
+        <>
+          <TimersList edit={edit} />
+        </>
       </div>
     </div>
   );

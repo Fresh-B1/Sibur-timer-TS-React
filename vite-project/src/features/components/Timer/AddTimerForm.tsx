@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
+import './AddTimeForm.css';
 
 const AddTimerForm: React.FC = () => {
   const [minutes, setMinutes] = useState(0);
@@ -43,27 +44,41 @@ const AddTimerForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={onHandleSubmit}>
-      <input
-        type='number'
-        value={minutes}
-        onChange={(e) => setMinutes(+e.target.value)}
-        min='0'
-      />
-      <input
-        type='number'
-        value={seconds}
-        onChange={(e) => setSeconds(+e.target.value)}
-        min='0'
-      />
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      <button type='submit' disabled={minutes === 0 && seconds === 0}>
-        Старт
-      </button>
-      <Link to='/'>
-        <li>Отменить</li>
-      </Link>
-    </form>
+    <div className='container_addForm'>
+      <div className='container_inner'>
+        <Link className='link_to_timers' to='/'>
+          Отменить
+        </Link>
+
+        <div className='timers_title'>Таймер</div>
+
+        <form className='form_addForm' onSubmit={onHandleSubmit}>
+          <input
+            name='minutes'
+            type='number'
+            value={minutes}
+            onChange={(e) => setMinutes(+e.target.value)}
+            min='0'
+          />
+          <label htmlFor=''>мин</label>
+          <input
+            name='seconds'
+            type='number'
+            value={seconds}
+            onChange={(e) => setSeconds(+e.target.value)}
+            min='0'
+          />
+          <label htmlFor=''>сек</label>
+          {error && <div style={{ color: 'red' }}>{error}</div>}
+          <button
+            className='btn_start'
+            disabled={minutes === 0 && seconds === 0}
+          >
+            Старт
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

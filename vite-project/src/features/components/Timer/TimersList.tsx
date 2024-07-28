@@ -7,11 +7,11 @@ const TimersList = ({ edit }: { edit: boolean }) => {
   const timers = useSelector((state: RootState) => state.timers.timers);
 
   return (
-    <div>
+    <>
       {timers.map((timer) => (
         <Timer edit={edit} key={timer.id} id={timer.id} />
       ))}
-    </div>
+    </>
   );
 };
 
