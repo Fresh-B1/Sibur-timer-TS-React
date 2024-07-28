@@ -19,6 +19,16 @@
   overflow: auto;
 }
 
+/* полоса прокрутки под Firefox*/
+.container_timers {
+  scrollbar-width: none; 
+}
+
+/* полоса прокрутки под Chrome, Safari, Opera */
+.container_timers::-webkit-scrollbar {
+  display: none;
+}
+
 .timers_title {
   display: flex;
   justify-content: start;
