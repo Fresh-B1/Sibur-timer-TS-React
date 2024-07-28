@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import TimersList from '../../shared/components/TimersList';
+import TimersList from '../../features/components/Timer/TimersList';
 import './TimersPage.css';
 
 function TimersPage(): JSX.Element {

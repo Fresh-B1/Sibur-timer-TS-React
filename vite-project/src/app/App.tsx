@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import TimersPage from '../pages/Timer/TimersPage';
-import AddTimerForm from '../shared/components/AddTimerForm';
-import TimerDetail from '../shared/components/TimerDetail';
+import AddTimerForm from '../features/components/Timer/AddTimerForm';
+import TimerDetail from '../features/components/Timer/TimerDetail';
 import './App.css';
 
 function App() {
