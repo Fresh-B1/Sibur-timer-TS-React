@@ -28,19 +28,19 @@ const defaultTimers: Timer[] = [
   },
 ];
 
-// const loadInitialTimers = (): Timer[] => {
-//   localStorage.setItem('timers', JSON.stringify([]));
-//   const savedTimers = localStorage.getItem('timers');
-//   if (savedTimers.length > 2) {
-//     return savedTimers;
-//   } else {
-//     localStorage.setItem('timers', JSON.stringify(defaultTimers));
-//     return defaultTimers;
-//   }
-// };
+const loadInitialTimers = (): Timer[] => {
+  const savedTimers = localStorage.getItem('timers');
+  if (savedTimers) {
+    const parsedTimers = JSON.parse(savedTimers);
+    return parsedTimers.length > 0 ? parsedTimers : defaultTimers;
+  } else {
+    localStorage.setItem('timers', JSON.stringify(defaultTimers));
+    return defaultTimers;
+  }
+};
 
-const stateTimer: StateTimer = {
-  timers: defaultTimers,
+const initialState: StateTimer = {
+  timers: loadInitialTimers(),
 };
 
 const saveToLocalStorage = (state: StateTimer) => {
@@ -48,7 +48,7 @@ const saveToLocalStorage = (state: StateTimer) => {
 };
 
 const timerReducer = (
-  state: StateTimer = stateTimer,
+  state: StateTimer = initialState,
   action: Action
 ): StateTimer => {
   let newState: StateTimer;
@@ -117,6 +117,12 @@ const timerReducer = (
         ...state,
         timers: state.timers.filter((timer) => timer.id !== action.payload.id),
       };
+      if (newState.timers.length === 0) {
+        newState = {
+          ...newState,
+          timers: defaultTimers,
+        };
+      }
       saveToLocalStorage(newState);
       return newState;
 
