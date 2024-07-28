@@ -43,6 +43,16 @@ const AddTimerForm: React.FC = () => {
     navigate(`/timer/${newTimer.id}`);
   };
 
+  const handleSecondsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = +e.target.value;
+    if (value >= 60) {
+      setMinutes(minutes + 1);
+      setSeconds(0);
+    } else {
+      setSeconds(value);
+    }
+  };
+
   return (
     <div className='container_addForm'>
       <div className='container_inner'>
@@ -59,16 +69,18 @@ const AddTimerForm: React.FC = () => {
             value={minutes}
             onChange={(e) => setMinutes(+e.target.value)}
             min='0'
+            max='60'
           />
-          <label htmlFor=''>мин</label>
+          <label htmlFor='minutes'>мин</label>
           <input
             name='seconds'
             type='number'
             value={seconds}
-            onChange={(e) => setSeconds(+e.target.value)}
+            onChange={handleSecondsChange}
             min='0'
+            max='60'
           />
-          <label htmlFor=''>сек</label>
+          <label htmlFor='seconds'>сек</label>
           {error && <div style={{ color: 'red' }}>{error}</div>}
           <button
             className='btn_start'
