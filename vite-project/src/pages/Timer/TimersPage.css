@@ -1,0 +1,32 @@
+
+:root {
+  --background-timer-color: #1a1f23;
+  --text-timer-color: #FFFFFF;
+  --font-fa
+}
+
+.timers_title {
+width: 134px;
+height: 26px;
+size: 24px;
+
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container_timers {
+  width: 390px;
+  height: 422px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  background-color: var(--background-timer-color);
+  color: var(--text-timer-color);
+  font-family: "ALS-Gorizont", sans-serif;
+}
