@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../redux/store';
+import './TimerDetail.css';
 
 const TimerDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,6 +12,16 @@ const TimerDetail: React.FC = () => {
   const timer = useSelector((state: RootState) =>
     state.timers.timers.find((timer) => timer.id === Number(id))
   );
+
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (timer) {
+      const totalSeconds = timer.startMinutes * 60 + timer.startSeconds;
+      const currentSeconds = timer.minutes * 60 + timer.seconds;
+      setProgress(((totalSeconds - currentSeconds) / totalSeconds) * 100);
+    }
+  }, [timer]);
 
   useEffect(() => {
     if (timer && timer.status === 'start') {
@@ -34,6 +45,10 @@ const TimerDetail: React.FC = () => {
       return () => clearInterval(interval);
     }
   }, [timer, dispatch]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--progress', `${progress}%`);
+  }, [progress]);
 
   if (!timer) {
     return <div>Таймер не найден</div>;
@@ -60,19 +75,29 @@ const TimerDetail: React.FC = () => {
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          {`${timer.minutes}:${timer.seconds.toString().padStart(2, '0')}`}
+    <div className='container_detail'>
+      <div className='container_timers_detail'>
+        <Link className='link_to_timers' to='/'>
+          Таймеры
+        </Link>
+
+        <div className='timer_display_detail'>
+          <div className='progress-circle'>
+            <div className='progress-circle-inner'>
+              <span>{`${timer.minutes}:${timer.seconds.toString().padStart(2, '0')}`}</span>
+            </div>
+          </div>
         </div>
-        <button onClick={handleStartPause}>
-          {timer.status === 'start' ? 'Пауза' : 'Возобновить'}
-        </button>
-        <button onClick={handleDelete}>Отмена</button>
+
+        <div className='btn_cancel-resume-pause'>
+          <button className='btn_pause-resume' onClick={handleStartPause}>
+            {timer.status === 'start' ? 'Пауза' : 'Возобновить'}
+          </button>
+          <button className='btn_cancel' onClick={handleDelete}>
+            Отмена
+          </button>
+        </div>
       </div>
-      <Link to='/'>
-        <li>Таймеры</li>
-      </Link>
     </div>
   );
 };
