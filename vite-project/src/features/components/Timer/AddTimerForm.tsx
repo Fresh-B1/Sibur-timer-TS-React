@@ -46,8 +46,12 @@ const AddTimerForm: React.FC = () => {
   const handleSecondsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = +e.target.value;
     if (value >= 60) {
-      setMinutes(minutes + 1);
-      setSeconds(0);
+      if (minutes < 60) {
+        setMinutes(minutes + 1);
+        setSeconds(0);
+      } else {
+        setSeconds(60);
+      }
     } else {
       setSeconds(value);
     }
@@ -60,28 +64,45 @@ const AddTimerForm: React.FC = () => {
           Отменить
         </Link>
 
-        <div className='timers_title'>Таймер</div>
+        <div className='timers_title title'>Таймер</div>
 
         <form className='form_addForm' onSubmit={onHandleSubmit}>
-          <input
-            name='minutes'
-            type='number'
-            value={minutes}
-            onChange={(e) => setMinutes(+e.target.value)}
-            min='0'
-            max='60'
-          />
-          <label htmlFor='minutes'>мин</label>
-          <input
-            name='seconds'
-            type='number'
-            value={seconds}
-            onChange={handleSecondsChange}
-            min='0'
-            max='60'
-          />
-          <label htmlFor='seconds'>сек</label>
+          <div className='container_input'>
+            <div className='next_min'> {minutes >= 1 && minutes - 1}</div>
+            <label htmlFor='minutes'>
+              <input
+                name='minutes'
+                type='number'
+                value={minutes}
+                onChange={(e) => setMinutes(+e.target.value)}
+                min='0'
+                max='60'
+              />
+              <span>мин</span>
+            </label>
+            {minutes < 60 && <div className='next_min'>{minutes + 1}</div>}
+          </div>
+
+          <div className='container_input'>
+            <div className='next_sec'> {seconds >= 1 && seconds - 1}</div>
+            <label htmlFor='seconds'>
+              {' '}
+              <input
+                name='seconds'
+                type='number'
+                value={seconds}
+                onChange={handleSecondsChange}
+                min='0'
+                max='60'
+              />
+              <span>сек</span>
+            </label>
+
+            {seconds < 60 && <div className='next_sec'>{seconds + 1}</div>}
+          </div>
+
           {error && <div style={{ color: 'red' }}>{error}</div>}
+
           <button
             className='btn_start'
             disabled={minutes === 0 && seconds === 0}
