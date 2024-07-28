@@ -1,93 +1,92 @@
 :root {
-  --progress-border-color: #29A354;
   --progress: 0%;
 }
 
 .container_detail {
-width: 100vw;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container_timers_detail {
-width: 390px;
-height: 422px;
-flex-direction: column;
-display: flex;
-align-items: center;
-background-color: var(--background-timer-color);
-color: var(--text-timer-color);
-font-family: var(--font-main);
-font-weight: 800;
+  width: 390px;
+  height: 422px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  background-color: var(--background-timer-color);
+  color: var(--text-timer-color);
+  font-family: var(--font-basic);
+  font-weight: 800;
 }
 
 .link_to_timers {
-padding-top: 20px;
-width: 90%;
-font-weight: 800;
-font-size: 14px;
-color: var(--font-edit-color);
-text-decoration: underline;
+  padding-top: 20px;
+  width: 90%;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--font-edit-color);
+  text-decoration: underline;
 }
 
 .timer_display_detail {
-display: flex;
-align-items: center;
-font-weight: 800;
-font-size: 36px;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 40px;
+  padding: 15px 0 40px 0;
 }
 
 .btn_cancel-resume-pause {
-display: flex;
-justify-content: space-between;
-width: 90%;
-padding-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
 }
 
 .btn_pause-resume,
 .btn_cancel {
-background: none;
-color: inherit;
-border: none;
-font: inherit;
-cursor: pointer;
-outline: inherit;
-box-shadow: inset -2px -2px 10px #000;
-width: 161px;
-height: 43.77px;
-border-radius: 32px;
-background-color: var(--background-btn-pause-resume-color);
-font-family: var(--font-main);
-font-size: 15px;
-color: #ffffff;
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  box-shadow: inset -2px -2px 10px #000;
+  width: 161px;
+  height: 43.77px;
+  border-radius: 32px;
+  background-color: var(--background-btn-pause-resume-color);
+  font-family: var(--font-basic);
+  font-size: 15px;
+  color: var(--text-bnt-color);
 }
 
 .btn_cancel {
-background-color: var(--background-btn-cancel-color);
+  background-color: var(--background-btn-cancel-color);
 }
 
 .progress-circle {
-position: relative;
-width: 257px;
-height: 257px;
-border-radius: 50%;
-background: conic-gradient(
-  var(--progress-border-color) var(--progress),
-  transparent 0
-);
+  position: relative;
+  width: 257px;
+  height: 257px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--background-progressBar-color) var(--progress),
+    transparent 0
+  );
 }
 
 .progress-circle-inner {
-position: absolute;
-top: 6px;
-left: 6px;
-width: 245px;
-height: 245px;
-background-color: #1a1f23;
-border-radius: 50%;
-display: flex;
-justify-content: center;
-align-items: center;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 245px;
+  height: 245px;
+  background-color: #1a1f23;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
